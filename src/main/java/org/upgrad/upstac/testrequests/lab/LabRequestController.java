@@ -53,9 +53,11 @@ public class LabRequestController {
         //Implement this method to return the list of test requests having status as 'INITIATED'
         //Make use of the findBy() method from testRequestQueryService class to get the list
         // For reference check the method requestHistory() method from TestRequestController class
+
+        // Implementation done by Venkatesh G
         User user = userLoggedInService.getLoggedInUser();
+
         return testRequestQueryService.findBy(RequestStatus.INITIATED);
-            //return null; // replace this line with your code
 
     }
 
@@ -67,10 +69,11 @@ public class LabRequestController {
         //Implement this method to return the list of test requests assigned to current tester(make use of the above created User object)
         //Make use of the findByTester() method from testRequestQueryService class to get the list
         // For reference check the method getPendingTests() method from TestRequestController class
-        User user = userLoggedInService.getLoggedInUser();
-        return testRequestQueryService.findByTester(user);
-        //return null; // replace this line with your code
 
+        // Implementation done by Venkatesh G
+        User user = userLoggedInService.getLoggedInUser();
+
+        return testRequestQueryService.findByTester(user);
 
     }
 
@@ -86,11 +89,11 @@ public class LabRequestController {
         // Refer to the method createRequest() from the TestRequestController class
 
         try {
+            // Implementation done by Venkatesh G
             User user = userLoggedInService.getLoggedInUser();
             TestRequest tr = testRequestUpdateService.assignForLabTest(id, user);
 
-            return tr; // replace this line of code with your implementation
-
+            return tr;
 
         }catch (AppException e) {
             throw asBadRequest(e.getMessage());
@@ -105,10 +108,13 @@ public class LabRequestController {
         // Create an object of the User class to get the logged in user
         // Create an object of TestResult class and make use of updateLabTest() method from testRequestUpdateService class
         //to update the current test request id with the createLabResult details by the current user(object created)
+
         try {
+            // Implementation done by Venkatesh G
             User user = userLoggedInService.getLoggedInUser();
             TestRequest tr = testRequestUpdateService.updateLabTest(id, createLabResult, user);
-            return tr; // replace this line of code with your implementation
+
+            return tr;
 
         } catch (ConstraintViolationException e) {
             throw asConstraintViolation(e);
@@ -116,9 +122,6 @@ public class LabRequestController {
             throw asBadRequest(e.getMessage());
         }
     }
-
-
-
 
 
 }

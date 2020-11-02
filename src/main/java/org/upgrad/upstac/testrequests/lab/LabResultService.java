@@ -30,13 +30,14 @@ public class LabResultService {
         //Implement this method to create the lab result module service
         // create object of LabResult class and use the setter methods to set tester and testRequest details
         // make use of saveLabResult() method to return the LabResult object
+
+        // Implementation done by Venkatesh G
         LabResult result = new LabResult();
         result.setRequest(testRequest);
         User user = userLoggedInService.getLoggedInUser();
-
         result.setTester(user);
 
-        return saveLabResult(result); // replace this line with your code
+        return saveLabResult(result);
     }
 
     @Transactional
@@ -61,7 +62,8 @@ public class LabResultService {
         // HeartBeat, OxygenLevel, Temperature, Result and UpdatedOn values
         // make use of the saveLabResult() method to return the object of LabResult
 
-        LabResult result = new LabResult();
+        // Implementation done by Venkatesh G
+        LabResult result = labResultRepository.findByRequest(testRequest).get();
         result.setRequest(testRequest);
         result.setBloodPressure(createLabResult.getBloodPressure());
         result.setComments(createLabResult.getComments());
@@ -71,8 +73,7 @@ public class LabResultService {
         result.setResult(createLabResult.getResult());
         result.setUpdatedOn(LocalDate.now());
 
-        return saveLabResult(result); // replace this line with your code
-
+        return saveLabResult(result);
 
     }
 

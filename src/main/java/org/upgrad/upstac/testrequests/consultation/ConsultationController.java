@@ -53,10 +53,11 @@ public class ConsultationController {
         // make use of the findBy() method from testRequestQueryService class
         //return the result
         // For reference check the method requestHistory() method from TestRequestController class
-        User user = userLoggedInService.getLoggedInUser();
-        return testRequestQueryService.findBy(RequestStatus.LAB_TEST_COMPLETED);
 
-        //return null; // replace this line with your code
+        // Implementation done by Venkatesh G
+        User user = userLoggedInService.getLoggedInUser();
+
+        return testRequestQueryService.findBy(RequestStatus.LAB_TEST_COMPLETED);
 
     }
 
@@ -68,12 +69,11 @@ public class ConsultationController {
         //Implement this method to return the list of test requests assigned to current doctor(make use of the above created User object)
         //Make use of the findByDoctor() method from testRequestQueryService class to get the list
         // For reference check the method getPendingTests() method from TestRequestController class
+
+        // Implementation done by Venkatesh G
         User user = userLoggedInService.getLoggedInUser();
+
         return testRequestQueryService.findByDoctor(user);
-
-        //return null; // replace this line with your code
-
-
 
     }
 
@@ -87,10 +87,13 @@ public class ConsultationController {
         //Create an object of TestRequest class and use the assignForConsultation() method of testRequestUpdateService to assign the particular id to the current user
         // return the above created object
         // Refer to the method createRequest() from the TestRequestController class
+
         try {
+            // Implementation done by Venkatesh G
             User user = userLoggedInService.getLoggedInUser();
             TestRequest tr = testRequestUpdateService.assignForConsultation(id, user);
-            return tr; // replace this line of code with your implementation
+
+            return tr;
         }catch (AppException e) {
             throw asBadRequest(e.getMessage());
         }
@@ -107,10 +110,11 @@ public class ConsultationController {
         //to update the current test request id with the testResult details by the current user(object created)
 
         try {
+            // Implementation done by Venkatesh G
             User user = userLoggedInService.getLoggedInUser();
             TestRequest tr = testRequestUpdateService.updateConsultation(id, testResult, user);
-            return tr; // replace this line of code with your implementation
 
+            return tr;
 
         } catch (ConstraintViolationException e) {
             throw asConstraintViolation(e);
